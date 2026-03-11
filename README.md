@@ -135,6 +135,27 @@ fraud-detection
 ├── README.md
 ├── requirements.txt
 └── images
+```
+
+---
+
+## How to Run the Project
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/yourusername/credit-card-fraud-detection.git
+```
+
+2. Install required libraries
+
+```bash
+pip install -r requirements.txt
+```
+
+3. Open the notebook in **Google Colab** or **Jupyter Notebook**
+
+4. Run all cells to reproduce the analysis and model results.
 
 ---
 
@@ -163,3 +184,4 @@ Possible improvements for this project include:
 **Anushka Keshri**
 
 Machine Learning and Data Analytics Enthusiast
+
