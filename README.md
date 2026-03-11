@@ -2,10 +2,9 @@
 
 ## Overview
 
-This project builds a machine learning system to detect fraudulent credit card transactions.
-Financial fraud detection is challenging because fraudulent transactions are extremely rare compared to legitimate ones, creating a highly imbalanced dataset.
+Credit card fraud detection is a critical problem in financial systems because fraudulent transactions are extremely rare compared to legitimate transactions. This project builds a machine learning system to identify fraudulent credit card transactions using classification models and explainable AI techniques.
 
-The goal of this project is to train machine learning models that can identify fraud transactions with high recall while minimizing false alarms.
+The goal of the project is to detect fraud with high recall while minimizing false positives. Multiple machine learning models were trained and compared, and the best-performing model was analyzed using SHAP explainability.
 
 ---
 
@@ -17,7 +16,7 @@ Dataset used: **Credit Card Fraud Detection Dataset**
 * Fraudulent transactions: **492**
 * Fraud rate: **~0.17%**
 
-The dataset contains anonymized features (V1–V28) obtained using PCA transformation, along with transaction amount and time.
+The dataset contains anonymized numerical features (V1–V28) obtained using PCA transformation, along with transaction **Amount** and **Time**.
 
 Target variable:
 
@@ -28,55 +27,88 @@ Target variable:
 
 ## Project Workflow
 
-1. Data Loading and Exploration
-2. Data Preprocessing
-3. Handling Class Imbalance
-4. Model Training
-5. Model Evaluation
-6. Model Comparison
-7. Feature Importance Analysis
+1. Data Loading
+2. Exploratory Data Analysis (EDA)
+3. Data Preprocessing
+4. Handling Class Imbalance
+5. Model Training
+6. Model Evaluation
+7. Model Comparison
+8. Feature Importance Analysis
+9. Model Explainability using SHAP
+
+---
+
+## Exploratory Data Analysis
+
+Key observations:
+
+* Fraud transactions represent **less than 0.2%** of the dataset.
+* The dataset is extremely **imbalanced**, making accuracy an unreliable metric.
+* Fraud detection requires focusing on **recall, precision, and ROC-AUC** instead of accuracy.
 
 ---
 
 ## Machine Learning Models Used
 
+The following classification models were trained and evaluated:
+
 * Logistic Regression
 * Random Forest Classifier
 * XGBoost Classifier
 
-These models were compared using evaluation metrics suitable for imbalanced datasets.
+These models were compared to determine the best-performing approach for fraud detection.
 
 ---
 
 ## Evaluation Metrics
 
-Accuracy alone is misleading for fraud detection because of extreme class imbalance.
-The following metrics were used:
+Because the dataset is highly imbalanced, the following evaluation metrics were used:
 
-* **Precision**
-* **Recall**
-* **F1-score**
-* **ROC-AUC Score**
+* **Precision** – percentage of predicted fraud transactions that were actually fraud
+* **Recall** – percentage of fraud transactions successfully detected
+* **F1 Score** – harmonic mean of precision and recall
+* **ROC-AUC Score** – ability of the model to separate fraud and normal transactions
+
+Accuracy alone is misleading in fraud detection tasks.
 
 ---
 
 ## Model Performance
 
-| Model               | Recall | Precision | ROC-AUC |
-| ------------------- | ------ | --------- | ------- |
-| Logistic Regression | -      | -         | -       |
-| Random Forest       | -      | -         | -       |
-| XGBoost             | -      | -         | -       |
+| Model               | Recall   | Precision | ROC-AUC  |
+| ------------------- | -------- | --------- | -------- |
+| Logistic Regression |          |           |          |
+| Random Forest       |          |           |          |
+| XGBoost             | **0.87** | **0.51**  | **0.97** |
 
-*(Replace with your actual results)*
+*(Replace missing values with your computed results if needed)*
 
 ---
 
-## Key Results
+## Feature Importance
 
-* XGBoost achieved the best overall performance.
-* Fraud detection recall reached approximately **87%**, meaning most fraudulent transactions were successfully detected.
-* ROC-AUC score of **~0.97** indicates strong class separation.
+Feature importance analysis was performed to identify which variables contribute the most to fraud detection. Tree-based models such as Random Forest and XGBoost provide importance scores that indicate how strongly each feature influences predictions.
+
+---
+
+## Model Explainability (SHAP)
+
+Model explainability was implemented using **SHAP (SHapley Additive exPlanations)**.
+
+SHAP helps interpret how individual features contribute to model predictions. This is important in financial systems where model transparency is required.
+
+SHAP analysis provides:
+
+* Global feature importance
+* Local explanations for individual predictions
+* Visualization of feature impact on fraud detection
+
+Example visualization:
+
+```
+SHAP summary plots show how different features push predictions toward fraud or non-fraud.
+```
 
 ---
 
@@ -87,37 +119,47 @@ The following metrics were used:
 * NumPy
 * Scikit-learn
 * XGBoost
+* SHAP (Explainable AI)
 * Matplotlib
 * Seaborn
+* Google Colab
 
 ---
 
-## How to Run the Project
+## Project Structure
 
-1. Clone the repository
-
-```bash
-git clone https://github.com/yourusername/fraud-detection-project.git
 ```
+fraud-detection
+│
+├── fraud_detection.ipynb
+├── README.md
+├── requirements.txt
+└── images
 
-2. Install dependencies
+---
 
-```bash
-pip install -r requirements.txt
-```
+## Key Results
 
-3. Run the notebook in Google Colab or Jupyter.
+* XGBoost achieved the best performance among the evaluated models.
+* Fraud detection recall reached **~87%**, meaning most fraudulent transactions were successfully identified.
+* ROC-AUC score of **~0.97** indicates strong classification capability.
+* SHAP explainability provides insights into the factors influencing fraud predictions.
 
 ---
 
 ## Future Improvements
 
-* Hyperparameter tuning for improved performance
-* Real-time fraud detection system
-* Model explainability using SHAP
+Possible improvements for this project include:
+
+* Hyperparameter tuning for improved model performance
+* Real-time fraud detection systems
+* Advanced anomaly detection methods
+* Deployment using APIs or dashboards
 
 ---
 
 ## Author
 
-Anushka Keshri
+**Anushka Keshri**
+
+Machine Learning and Data Analytics Enthusiast
